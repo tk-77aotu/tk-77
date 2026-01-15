@@ -103,6 +103,20 @@
       line-height: 1.5;
     }
 
+    #paymentPopup {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    #paymentPopup img {
+      width: 150px;
+      margin-bottom: 12px;
+    }
+
     footer {
       text-align: center;
       padding: 30px 10px;
@@ -121,7 +135,7 @@
 <body>
 
 <header>
-  <h1>HK自动发货平台</h1>
+  <h1>数字商品自动发货平台</h1>
 </header>
 
 <main>
@@ -130,7 +144,7 @@
     <div>
       <h2>Apple 数字服务 · 即时交付</h2>
 
-      <div class="price">¥ 29.00</div>
+      <div class="price">¥ 19.00</div>
 
       <ul>
         <li>数字商品，支付成功后自动发送</li>
@@ -159,6 +173,16 @@
       <div class="notice">
         点击购买即代表你同意数字商品自动发货规则。
       </div>
+
+      <!-- 支付二维码弹窗 -->
+      <div id="paymentPopup">
+        <h3>请扫码支付</h3>
+        <p>微信支付：</p>
+        <img src="wechat-qrcode.png" alt="微信支付二维码" />
+        <p>支付宝支付：</p>
+        <img src="alipay-qrcode.png" alt="支付宝支付二维码" />
+        <p>支付完成后，请保持邮箱正确，系统会自动发送商品。</p>
+      </div>
     </div>
   </div>
 
@@ -172,19 +196,25 @@
   document.getElementById("orderForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const email1 = document.getElementById("email").value;
-    const email2 = document.getElementById("email2").value;
+    const email1 = document.getElementById("email").value.trim();
+    const email2 = document.getElementById("email2").value.trim();
 
     if (email1 !== email2) {
       alert("两次输入的邮箱不一致");
       return;
     }
 
-    alert("订单已创建（示例）。下一步可接入支付系统。");
+    // 显示支付二维码
+    document.getElementById("paymentPopup").style.display = "block";
+
+    // TODO: 可选 - 保存订单邮箱到后端，用于发货
+    fetch("/save-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email1, product: "Apple 数字服务" })
+    }).catch(console.log);
   });
 </script>
 
 </body>
 </html>
-
-
