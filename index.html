@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>数字商品自动发货平台</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="数字商品自动发货平台，支付完成后系统自动发送至邮箱" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+    }
+
+    body {
+      margin: 0;
+      background: #f6f7f9;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 16px 24px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    }
+
+    .product h2 {
+      margin-top: 0;
+    }
+
+    .price {
+      font-size: 26px;
+      font-weight: bold;
+      color: #0070f3;
+      margin: 12px 0;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    .buy-box {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0070f3;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0059c1;
+    }
+
+    .notice {
+      font-size: 12px;
+      color: #666;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>数字商品自动发货平台</h1>
+</header>
+
+<main>
+
+  <div class="product">
+    <div>
+      <h2>Apple 数字服务 · 即时交付</h2>
+
+      <div class="price">¥ 39.00</div>
+
+      <ul>
+        <li>数字商品，支付成功后自动发送</li>
+        <li>支持邮箱即时接收</li>
+        <li>无需人工介入</li>
+        <li>非实体商品，不支持退款</li>
+      </ul>
+
+      <p class="notice">
+        本产品为数字化服务内容，不涉及实体商品。  
+        请确认邮箱填写正确，系统将自动发送交付信息。
+      </p>
+    </div>
+
+    <div class="buy-box">
+      <form id="orderForm">
+        <label>接收邮箱</label>
+        <input type="email" id="email" placeholder="请输入你的邮箱" required />
+
+        <label>确认邮箱</label>
+        <input type="email" id="email2" placeholder="再次输入邮箱" required />
+
+        <button type="submit">立即购买</button>
+      </form>
+
+      <div class="notice">
+        点击购买即代表你同意数字商品自动发货规则。
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 tk-77.shop · 数字商品自动发货 · All Rights Reserved
+</footer>
+
+<script>
+  document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email1 = document.getElementById("email").value;
+    const email2 = document.getElementById("email2").value;
+
+    if (email1 !== email2) {
+      alert("两次输入的邮箱不一致");
+      return;
+    }
+
+    alert("订单已创建（示例）。下一步可接入支付系统。");
+  });
+</script>
+
+</body>
+</html>
+
